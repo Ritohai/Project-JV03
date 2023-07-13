@@ -1,17 +1,30 @@
 package ra.model;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
-public class User {
+public class User implements Serializable {
     private int id;
     private String name;
-
     private String username;
     private String password;
     private String address;
     private String phoneNumber;
-    private boolean status;
-    private Set<Roll> rolls;
+
+    public List<CartItem> getCartItems() {
+        return cartItems;
+    }
+
+    public void setCartItems(List<CartItem> cartItems) {
+        this.cartItems = cartItems;
+    }
+
+    private boolean status = true;
+    private Set<Roll> rolls = new HashSet<Roll>();
+    private List<CartItem> cartItems = new ArrayList<>();
 
     public User() {
     }
@@ -89,5 +102,16 @@ public class User {
 
     public void setRolls(Set<Roll> rolls) {
         this.rolls = rolls;
+    }
+
+    @Override
+    public String toString() {
+        String roll;
+        if (rolls.contains(Roll.ADMIN)) {
+            roll = "ADMIN";
+        } else {
+            roll = "USER";
+        }
+        return "Id: " + id + " | Tên: " + name + " | Tên tài khoản: " + username + " |Phân quyền: " + roll + " | Trạng thái: " +(status?"Mở khóa":"Khóa") ;
     }
 }

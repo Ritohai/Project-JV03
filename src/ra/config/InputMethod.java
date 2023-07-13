@@ -7,6 +7,9 @@ public class InputMethod {
     public static final String ERROR_NUMBER = "===>> Vui lòng nhập số nguyên lớn hơn 0";
     public static final String ERROR_SONGID = "===>> Id phải bắt đầu bằng kí tự P và có 4 kí tự số";
     public static final String ERROR_ALERT_10 = "====>> Ít nhất là 10 <<====";
+    public static final String ERROR_USENAME = "===>> Usename phải lớn hơn 5 kí tự";
+    public static final String ERROR_PASS = "===>> password phải lớn hơn 5 kí tự và không chứa khoảng trắng";
+    public static final String ERROR_PHONE = "===>> Số điện thoại bạn nhập không đúng định dạng";
     /*========================================Input Method Start========================================*/
 
     /**
@@ -162,6 +165,34 @@ public class InputMethod {
                 return result;
             }
             System.err.println(ERROR_ALERT_10);
+        }
+    }
+    public static String getusename() {
+        while (true) {
+            String result = getString();
+            if (result.trim().length() >= 6) {
+                return result;
+            }
+            System.err.println(ERROR_USENAME);
+        }
+    }
+    public static String getpassword() {
+        while (true) {
+            String result = getString();
+            if (result.trim().length() >= 5 && result.trim().replaceAll("\\s+", "").equals(result.trim())) {
+                return result;
+            }
+            System.err.println(ERROR_PASS);
+        }
+    }
+    public static String getPhoneNumber() {
+        while (true) {
+            String result = getString();
+            if (result.matches("^(\\+?84|0)\\d{9}$")) {
+                // Hợp lệ nếu số điện thoại có đúng định dạng
+                return result;
+            }
+            System.err.println(ERROR_PHONE);
         }
     }
     /*========================================Other Method========================================*/
