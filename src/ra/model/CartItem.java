@@ -1,5 +1,2 @@
-package ra.model;
-
-public class CartItem {
-
+package ra.model;public class CartItem {
 }
